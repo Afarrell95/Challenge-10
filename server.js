@@ -1,63 +1,96 @@
 const inquirer = require("inquirer");
-
-// Node v10+ includes a promises module as an alternative to using callbacks with file system methods.
 const { writeFile } = require("fs").promises;
+const jest = require("jest");
 
-// Use writeFileSync method to use promises instead of a callback function
+const managerQuestions = [
+  {
+    type: "input",
+    message: "Name?",
+    name: "Manager's Name",
+  },
+  {
+    type: "input",
+    message: "Employee ID?",
+    name: "Manager's ID",
+  },
+  {
+    type: "input",
+    message: "Email?",
+    name: "Manager's Email",
+  },
+  {
+    type: "input",
+    message: "Office number?",
+    name: "Manager's Office Number",
+  },
+];
 
-const promptUser = () => {
-  return inquirer.prompt([
-    {
-      type: "input",
-      name: "name",
-      message: "What is your name?",
-    },
-    {
-      type: "input",
-      name: "location",
-      message: "Where are you from?",
-    },
-    {
-      type: "input",
-      name: "hobby",
-      message: "What is your favorite hobby?",
-    },
-    {
-      type: "input",
-      name: "food",
-      message: "What is your favorite food?",
-    },
-    {
-      type: "input",
-      name: "github",
-      message: "Enter your GitHub Username",
-    },
-    {
-      type: "input",
-      name: "linkedin",
-      message: "Enter your LinkedIn URL.",
-    },
-  ]);
-};
+const optionsQuestions = [
+  {
+    type: "list",
+    message: "Add employee?",
+    choices: ["yes", "no"],
+    name: "new employee option",
+  },
+];
 
-const generateHTML = ({ name, location, github, linkedin }) =>
-  `<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-  <title>Document</title>
-</head>
-<body>
-  <div class="jumbotron jumbotron-fluid">
-  <div class="container">
-</div>
-</body>
-</html>`;
+const roleQuestion = [
+  {
+    type: "list",
+    message: "Engineer or Intern?",
+    choices: ["Engineer", "Intern"],
+    name: "roles",
+  },
+];
+
+const EngineerQuestions = [
+  {
+    type: "input",
+    message: "Name?",
+    name: "Engineer's Name",
+  },
+  {
+    type: "input",
+    message: "Employee ID?",
+    name: "Engineer's ID",
+  },
+  {
+    type: "input",
+    message: "Email?",
+    name: "Engineer's Email",
+  },
+  {
+    type: "input",
+    message: "Github?",
+    name: "Engineer's Github",
+  },
+];
+
+const InternQuestions = [
+  {
+    type: "input",
+    message: "Name?",
+    name: "Intern's Name",
+  },
+  {
+    type: "input",
+    message: "Employee ID?",
+    name: "Intern's ID",
+  },
+  {
+    type: "input",
+    message: "Email?",
+    name: "Intern's Email",
+  },
+  {
+    type: "input",
+    message: "School?",
+    name: "Intern's School",
+  },
+];
 
 const init = () => {
-  promptUser()
+  prompt()
     .then((answers) => writeFile("index.html", generateHTML(answers)))
     .then(() => console.log("Successfully wrote to index.html"))
     .catch((err) => console.error(err));
