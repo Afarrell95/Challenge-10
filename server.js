@@ -25,23 +25,19 @@ const managerQuestions = [
   },
 ];
 
-const optionsQuestions = [
-  {
-    type: "list",
-    message: "Add employee?",
-    choices: ["yes", "no"],
-    name: "new employee option",
-  },
-];
+const optionsQuestions = {
+  type: "list",
+  message: "Add employee?",
+  choices: ["yes", "no"],
+  name: "new employee option",
+};
 
-const roleQuestion = [
-  {
-    type: "list",
-    message: "Engineer or Intern?",
-    choices: ["Engineer", "Intern"],
-    name: "roles",
-  },
-];
+const roleQuestion = {
+  type: "list",
+  message: "Engineer or Intern?",
+  choices: ["Engineer", "Intern"],
+  name: "roles",
+};
 
 const EngineerQuestions = [
   {
@@ -90,10 +86,9 @@ const InternQuestions = [
 ];
 
 const init = () => {
-  prompt()
-    .then((answers) => writeFile("index.html", generateHTML(answers)))
-    .then(() => console.log("Successfully wrote to index.html"))
-    .catch((err) => console.error(err));
+  //prompt manager questions, prompt options question, if yes, prompt new employee question, if no, finish task. If new employee
+  //prompt role question, if engineer, prompt engineer questions, if intern, prompt intern questions. prompt new employee question etc.
+  //on finish taks, generate html
 };
 
 init();
