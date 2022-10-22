@@ -1,5 +1,5 @@
 const inquirer = require("inquirer");
-const { writeFile } = require("fs").promises;
+const fs = require("fs").promises;
 const jest = require("jest");
 
 const managerQuestions = [

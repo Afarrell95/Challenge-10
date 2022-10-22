@@ -1,1 +1,2 @@
-//make classes for manager, engineer, intern
+//make classes for Employee, engineer, intern
+class Employee {}

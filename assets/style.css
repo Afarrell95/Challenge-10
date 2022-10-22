@@ -1,1 +1,15 @@
 /*create styles for generated cards*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header {
+    background-color: rgb(100, 47, 47);
+    color:white;
+    font-size: 30px;
+    text-align: center;
+    height: 100px;
+}
+
