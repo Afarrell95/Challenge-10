@@ -1,4 +1,7 @@
 const inquirer = require("inquirer");
+const Engineer = require("./assets/engineer");
+const Intern = require("./assets/intern");
+const Manager = require("./assets/manager");
 // const fs = require("fs").promises;
 // const jest = require("jest");
 // const Employee = require("./assets/classes");
@@ -96,6 +99,13 @@ const init = () => {
   //on finish taks, generate html
   inquirer.prompt(managerQuestions).then((answer) => {
     console.log(answer);
+    let manager = new Manager(
+      answer.managerName,
+      answer.managerId,
+      answer.managerEmail,
+      answer.managerOfficeNumber
+    );
+    team.push(manager);
     inquirer.prompt(optionsQuestions).then((answer) => {
       if (answer === "no") {
         return;
@@ -105,10 +115,24 @@ const init = () => {
           if (answer === "Engineer") {
             inquirer.prompt(EngineerQuestions).then((answer) => {
               console.log(answer);
+              let engineer = new Engineer(
+                answer.engineerName,
+                answer.engineerId,
+                answer.engineerEmail,
+                answer.engineerGithub
+              );
+              team.push(engineer);
             });
           } else {
             inquirer.prompt(InternQuestions).then((answer) => {
               console.log(answer);
+              let intern = new Intern(
+                answer.internName,
+                answer.internId,
+                answer.internEmail,
+                answer.internSchool
+              );
+              team.push(intern);
             });
           }
         });
