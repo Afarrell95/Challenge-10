@@ -5,26 +5,28 @@ const inquirer = require("inquirer");
 // const Engineer = require("./assets/engineer");
 // const Intern = require("./assets/intern");
 
+let team = [];
+
 const managerQuestions = [
   {
     type: "input",
     message: "Name?",
-    name: "Manager's Name",
+    name: "managerName",
   },
   {
     type: "input",
     message: "Employee ID?",
-    name: "Manager's ID",
+    name: "managerId",
   },
   {
     type: "input",
     message: "Email?",
-    name: "Manager's Email",
+    name: "managerEmail",
   },
   {
     type: "input",
     message: "Office number?",
-    name: "Manager's Office Number",
+    name: "managerOfficeNumber",
   },
 ];
 
@@ -32,7 +34,7 @@ const optionsQuestions = {
   type: "list",
   message: "Add employee?",
   choices: ["yes", "no"],
-  name: "new employee option",
+  name: "newEmployeeOption",
 };
 
 const roleQuestion = {
@@ -46,22 +48,22 @@ const EngineerQuestions = [
   {
     type: "input",
     message: "Name?",
-    name: "Engineer's Name",
+    name: "engineerName",
   },
   {
     type: "input",
     message: "Employee ID?",
-    name: "Engineer's ID",
+    name: "engineerId",
   },
   {
     type: "input",
     message: "Email?",
-    name: "Engineer's Email",
+    name: "engineerEmail",
   },
   {
     type: "input",
     message: "Github?",
-    name: "Engineer's Github",
+    name: "engineerGithub",
   },
 ];
 
@@ -69,22 +71,22 @@ const InternQuestions = [
   {
     type: "input",
     message: "Name?",
-    name: "Intern's Name",
+    name: "internName",
   },
   {
     type: "input",
     message: "Employee ID?",
-    name: "Intern's ID",
+    name: "internId",
   },
   {
     type: "input",
     message: "Email?",
-    name: "Intern's Email",
+    name: "internEmail",
   },
   {
     type: "input",
     message: "School?",
-    name: "Intern's School",
+    name: "internSchool",
   },
 ];
 
@@ -92,8 +94,26 @@ const init = () => {
   //prompt manager questions, prompt options question, if yes, prompt new employee question, if no, finish task. If new employee
   //prompt role question, if engineer, prompt engineer questions, if intern, prompt intern questions. prompt new employee question etc.
   //on finish taks, generate html
-  return inquirer.prompt(managerQuestions).then((mangerData) => {
-    console.log(mangerData);
+  inquirer.prompt(managerQuestions).then((answer) => {
+    console.log(answer);
+    inquirer.prompt(optionsQuestions).then((answer) => {
+      if (answer === "no") {
+        return;
+        //write HTML file here
+      } else {
+        inquirer.prompt(roleQuestion).then((answer) => {
+          if (answer === "Engineer") {
+            inquirer.prompt(EngineerQuestions).then((answer) => {
+              console.log(answer);
+            });
+          } else {
+            inquirer.prompt(InternQuestions).then((answer) => {
+              console.log(answer);
+            });
+          }
+        });
+      }
+    });
   });
 };
 
