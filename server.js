@@ -1,6 +1,9 @@
 const inquirer = require("inquirer");
-const fs = require("fs").promises;
-const jest = require("jest");
+// const fs = require("fs").promises;
+// const jest = require("jest");
+// const Employee = require("./assets/classes");
+// const Engineer = require("./assets/engineer");
+// const Intern = require("./assets/intern");
 
 const managerQuestions = [
   {
@@ -89,6 +92,9 @@ const init = () => {
   //prompt manager questions, prompt options question, if yes, prompt new employee question, if no, finish task. If new employee
   //prompt role question, if engineer, prompt engineer questions, if intern, prompt intern questions. prompt new employee question etc.
   //on finish taks, generate html
+  return inquirer.prompt(managerQuestions).then((mangerData) => {
+    console.log(mangerData);
+  });
 };
 
 init();
