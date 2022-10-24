@@ -2,11 +2,9 @@ const inquirer = require("inquirer");
 const Engineer = require("./assets/engineer");
 const Intern = require("./assets/intern");
 const Manager = require("./assets/manager");
-// const fs = require("fs").promises;
-// const jest = require("jest");
 // const Employee = require("./assets/classes");
-// const Engineer = require("./assets/engineer");
-// const Intern = require("./assets/intern");
+const fs = require("fs").promises;
+const jest = require("jest");
 
 let team = [];
 
