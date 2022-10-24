@@ -1,5 +1,3 @@
-//make classes for Employee, engineer, intern
-
 class Employee {
   constructor(name, id, email) {
     this.name = name;
@@ -17,28 +15,4 @@ class Employee {
   }
 }
 
-class Engineer extends Employee {
-  constructor(name, id, email, github) {
-    this.github = github;
-
-    super(name, id, email);
-  }
-  githubData() {
-    return this.github;
-  }
-}
-
-class Intern extends Employee {
-  constructor(name, id, email, school) {
-    this.school = school;
-
-    super(name, id, email);
-  }
-  schoolData() {
-    return this.school;
-  }
-}
-
 module.exports = Employee;
-module.exports = Engineer;
-module.exports = Intern;

@@ -2,7 +2,7 @@ const inquirer = require("inquirer");
 const Engineer = require("./assets/engineer");
 const Intern = require("./assets/intern");
 const Manager = require("./assets/manager");
-// const Employee = require("./assets/classes");
+const Employee = require("./assets/employee");
 const fs = require("fs").promises;
 const jest = require("jest");
 
@@ -92,9 +92,6 @@ const InternQuestions = [
 ];
 
 const init = () => {
-  //prompt manager questions, prompt options question, if yes, prompt new employee question, if no, finish task. If new employee
-  //prompt role question, if engineer, prompt engineer questions, if intern, prompt intern questions. prompt new employee question etc.
-  //on finish taks, generate html
   inquirer.prompt(managerQuestions).then((answer) => {
     console.log(answer);
     let manager = new Manager(
@@ -112,7 +109,6 @@ const init = () => {
         inquirer.prompt(roleQuestion).then((answer) => {
           if (answer === "Engineer") {
             inquirer.prompt(EngineerQuestions).then((answer) => {
-              console.log(answer);
               let engineer = new Engineer(
                 answer.engineerName,
                 answer.engineerId,
@@ -123,7 +119,6 @@ const init = () => {
             });
           } else {
             inquirer.prompt(InternQuestions).then((answer) => {
-              console.log(answer);
               let intern = new Intern(
                 answer.internName,
                 answer.internId,
