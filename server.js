@@ -116,6 +116,7 @@ const init = () => {
                 answer.engineerGithub
               );
               team.push(engineer);
+              console.log(team);
             });
           } else {
             inquirer.prompt(InternQuestions).then((answer) => {
@@ -126,6 +127,7 @@ const init = () => {
                 answer.internSchool
               );
               team.push(intern);
+              console.log(team);
             });
           }
         });
