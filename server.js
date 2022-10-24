@@ -91,6 +91,42 @@ const InternQuestions = [
   },
 ];
 
+function addEmployee() {
+  inquirer.prompt(optionsQuestions).then((answer) => {
+    if (answer === "no") {
+      return;
+      //write HTML file here
+    } else {
+      inquirer.prompt(roleQuestion).then((answer) => {
+        if (answer === "Engineer") {
+          inquirer.prompt(EngineerQuestions).then((answer) => {
+            let engineer = new Engineer(
+              answer.engineerName,
+              answer.engineerId,
+              answer.engineerEmail,
+              answer.engineerGithub
+            );
+            team.push(engineer);
+            console.log(team);
+          });
+        } else {
+          inquirer.prompt(InternQuestions).then((answer) => {
+            let intern = new Intern(
+              answer.internName,
+              answer.internId,
+              answer.internEmail,
+              answer.internSchool
+            );
+            team.push(intern);
+            console.log(team);
+            addEmployee();
+          });
+        }
+      });
+    }
+  });
+}
+
 const init = () => {
   inquirer.prompt(managerQuestions).then((answer) => {
     console.log(answer);
@@ -101,38 +137,7 @@ const init = () => {
       answer.managerOfficeNumber
     );
     team.push(manager);
-    inquirer.prompt(optionsQuestions).then((answer) => {
-      if (answer === "no") {
-        return;
-        //write HTML file here
-      } else {
-        inquirer.prompt(roleQuestion).then((answer) => {
-          if (answer === "Engineer") {
-            inquirer.prompt(EngineerQuestions).then((answer) => {
-              let engineer = new Engineer(
-                answer.engineerName,
-                answer.engineerId,
-                answer.engineerEmail,
-                answer.engineerGithub
-              );
-              team.push(engineer);
-              console.log(team);
-            });
-          } else {
-            inquirer.prompt(InternQuestions).then((answer) => {
-              let intern = new Intern(
-                answer.internName,
-                answer.internId,
-                answer.internEmail,
-                answer.internSchool
-              );
-              team.push(intern);
-              console.log(team);
-            });
-          }
-        });
-      }
-    });
+    addEmployee();
   });
 };
 
