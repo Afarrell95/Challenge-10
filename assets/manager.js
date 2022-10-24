@@ -8,6 +8,9 @@ class Manager extends Employee {
   officeNumberData() {
     return this.officeNumber;
   }
+  managerData() {
+    return data.Manager;
+  }
 }
 
 module.exports = Manager;

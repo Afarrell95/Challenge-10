@@ -8,6 +8,9 @@ class Intern extends Employee {
   schoolData() {
     return this.school;
   }
+  internData() {
+    return data.intern;
+  }
 }
 
 module.exports = Intern;

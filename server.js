@@ -94,8 +94,10 @@ const InternQuestions = [
 function addEmployee() {
   inquirer.prompt(optionsQuestions).then((answer) => {
     if (answer === "no") {
-      return;
-      //write HTML file here
+      const htmlContent = GenerateHTML.generateHtml(data);
+      fs.writeFile("index.html", htmlContent, (err) =>
+        err ? console.log(err) : console.log("Successfully created HTML!")
+      );
     } else {
       inquirer.prompt(roleQuestion).then((answer) => {
         if (answer === "Engineer") {
