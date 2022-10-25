@@ -126,8 +126,30 @@ function addEmployee() {
   });
 }
 
+function makePage() {
+  const page = `<!DOCTYPE html>
+ <html lang="en">
+ <head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+   <title>Document</title>
+ </head>
+ <body>
+   <div class="jumbotron jumbotron-fluid">
+  <h1>Employee Info Generator</h1>
+  </div>
+<div class=row>
+<p>${JSON.stringify(team)}</p>
+</div
+ </div>
+ </body>
+ </html>`;
+  return page;
+}
+
 function generateHtml(fileName, data) {
-  fs.writeFile("./index.html", team, (err) =>
+  fs.writeFile("index.html", makePage(), (err) =>
     err ? console.log(err) : console.log("Successfully created HTML!")
   );
 }
