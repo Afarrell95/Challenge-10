@@ -5,7 +5,6 @@ const Manager = require("./assets/manager");
 const Employee = require("./assets/employee");
 const fs = require("fs").promises;
 const jest = require("jest");
-const GenerateHTML = require("./assets/generate");
 
 let team = [];
 
@@ -95,10 +94,7 @@ const InternQuestions = [
 function addEmployee() {
   inquirer.prompt(optionsQuestions).then((answer) => {
     if (answer.newEmployeeOption === "no") {
-      const htmlContent = GenerateHTML.generateHtml(team.answer);
-      fs.writeFile("index.html", htmlContent, (err) =>
-        err ? console.log(err) : console.log("Successfully created HTML!")
-      );
+      generateHtml();
     } else {
       inquirer.prompt(roleQuestion).then((answer) => {
         if (answer === "Engineer") {
@@ -128,6 +124,12 @@ function addEmployee() {
       });
     }
   });
+}
+
+function generateHtml(fileName, data) {
+  fs.writeFile("./index.html", team, (err) =>
+    err ? console.log(err) : console.log("Successfully created HTML!")
+  );
 }
 
 const init = () => {
